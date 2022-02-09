@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net35</TargetFramework>
@@ -23,12 +23,124 @@
   </ItemGroup>
   
   <ItemGroup>
+    <Reference Include="DecalSystem">
+      <HintPath>..\Dependencies\Client\DecalSystem.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
+    <Reference Include="EvilConsole">
+      <HintPath>..\Dependencies\Client\EvilConsole.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
+    <Reference Include="EvilCore">
+      <HintPath>..\Dependencies\Client\EvilCore.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
+    <Reference Include="EvilNetwork">
+      <HintPath>..\Dependencies\Server\EvilNetwork.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
+    <Reference Include="EvilPhysics">
+      <HintPath>..\Dependencies\Client\EvilPhysics.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
+    <Reference Include="EvilUI2">
+      <HintPath>..\Dependencies\Client\EvilUI2.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
+    <Reference Include="FacebookStore">
+      <HintPath>..\Dependencies\Client\FacebookStore.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
+    <Reference Include="FarseerPhysics">
+      <HintPath>..\Dependencies\Server\FarseerPhysics.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
+    <Reference Include="GalaxyCSharp">
+      <HintPath>..\Dependencies\Client\GalaxyCSharp.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\Dependencies\Server\ICSharpCode.SharpZipLib.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
+    <Reference Include="MIConvexHull">
+      <HintPath>..\Dependencies\Client\MIConvexHull.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
+    <Reference Include="Mono.CSharp">
+      <HintPath>..\Dependencies\Server\Mono.CSharp.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
+    <Reference Include="Mono.Security">
+      <HintPath>..\Dependencies\Client\Mono.Security.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
+    <Reference Include="Mono.Simd">
+      <HintPath>..\Dependencies\Client\Mono.Simd.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
+    <Reference Include="Mono.Ssdp">
+      <HintPath>..\Dependencies\Server\Mono.Ssdp.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
+    <Reference Include="Mono.Upnp">
+      <HintPath>..\Dependencies\Server\Mono.Upnp.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
+    <Reference Include="Photon3DotNet">
+      <HintPath>..\Dependencies\Server\Photon3DotNet.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
+    <Reference Include="PhotonLoadbalancingApi">
+      <HintPath>..\Dependencies\Server\PhotonLoadbalancingApi.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
+    <Reference Include="RakNetNet">
+      <HintPath>..\Dependencies\Server\RakNetNet.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
+    <Reference Include="RealmforgeAsync">
+      <HintPath>..\Dependencies\Client\RealmforgeAsync.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
     <Reference Include="RealmforgeCommon">
-      <HintPath>..\Dependencies\RealmforgeCommon.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\Dependencies\Server\RealmforgeCommon.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
+    <Reference Include="RewiredScripts">
+      <HintPath>..\Dependencies\Client\RewiredScripts.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
+    <Reference Include="Rewired_Core">
+      <HintPath>..\Dependencies\Client\Rewired_Core.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
+    <Reference Include="Rewired_Windows_Lib">
+      <HintPath>..\Dependencies\Client\Rewired_Windows_Lib.dll</HintPath>
+		<Private>False</Private>
     </Reference>
     <Reference Include="server">
-      <HintPath>..\Dependencies\server.dll</HintPath>
+      <HintPath>..\Dependencies\Server\server.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\Dependencies\Client\UnityEngine.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.Analytics">
+      <HintPath>..\Dependencies\Client\UnityEngine.Analytics.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>..\Dependencies\Client\UnityEngine.Networking.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.Purchasing">
+      <HintPath>..\Dependencies\Client\UnityEngine.Purchasing.dll</HintPath>
+		<Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\Dependencies\Client\UnityEngine.UI.dll</HintPath>
 		<Private>False</Private>
     </Reference>
   </ItemGroup>

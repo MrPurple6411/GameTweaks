@@ -5,9 +5,10 @@
     using BepInEx.Logging;
     using HarmonyLib;
     using Realmforge.Server;
-    using Realmforge.Server.Scripting;
-    using Realmforge.Server.Scripting.Action;
+    using Realmforge.Internal.Server;
     using Realmforge.Shared;
+    using UnityEngine;
+    using Realmforge.Internal.Client;
 
     [BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
     public class Plugin : BaseUnityPlugin
@@ -26,6 +27,9 @@
         public static ConfigEntry<int> FreeZombies;
         public static ConfigEntry<int> FreeSkeletons; 
         public static ConfigEntry<int> FreeTurnedHeroes;
+        public static ConfigEntry<KeyCode> TurboKey;
+        public static ConfigEntry<bool> TurboToggle;
+        public static ConfigEntry<float> TurboSpeed;
         public static ManualLogSource logger;
 
         private void Awake()
@@ -48,11 +52,56 @@
             FreeZombies = this.Config.Bind("Population Modifiers", "Free Zombies", 1, "Number of Free Zombies before costing Population Points");
             FreeSkeletons = this.Config.Bind("Population Modifiers", "Free Skeletons", 1, "Number of Free Skeletons before costing Population Points");
             FreeTurnedHeroes = this.Config.Bind("Population Modifiers", "Free Turned Heroes", 3, "Number of Free Converted Heroes before costing Population Points");
-
+            TurboKey = this.Config.Bind("Time Modifiers", "Turbo Key", KeyCode.Pause, "Key to hold to increase game speed by multiplier.");
+            TurboSpeed = this.Config.Bind("Time Modifiers", "Turbo Speed", 5f, "Turbo Speed Multiplier");
+            TurboToggle = this.Config.Bind("Time Modifiers", "Turbo Toggle", false, "Determines if the Turbo Key is a toggle or if you need to Hold it");
             AIAttackAllowed = this.Config.Bind("AI Modifiers", "AI can Attack", true, "Setting false makes the AI never able to attack Human Controlled things.");
             AIAttackPunished = this.Config.Bind("AI Modifiers", "AI Attack Thoughts Punished", false, "Setting true makes the AI die instantly if they THINK to attack Human Controlled things when not allowed.");
 
             Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
+        }
+
+        private bool keyHeld = false;
+
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(TurboKey.Value))
+            {
+                if (TurboToggle.Value)
+                {
+                    keyHeld = !keyHeld;
+                    return;
+                }
+                keyHeld = true;
+                return;
+            }
+            if (Input.GetKeyUp(TurboKey.Value) && !TurboToggle.Value)
+            {
+                keyHeld = false;
+                return;
+            }
+            if (keyHeld)
+            {
+                if(Time.timeScale != TurboSpeed.Value || (NetworkServer.Instance != null && NetworkServer.Instance.gameLogicServer != null && NetworkServer.Instance.gameLogicServer.speed != TurboSpeed.Value))
+                {
+                    NetworkServer.Instance.gameLogicServer.SetSpeed(TurboSpeed.Value);
+                    Time.timeScale = TurboSpeed.Value;
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                if(Time.timeScale == TurboSpeed.Value || (NetworkServer.Instance != null && NetworkServer.Instance.gameLogicServer != null && NetworkServer.Instance.gameLogicServer.speed == TurboSpeed.Value))
+                {
+                    NetworkServer.Instance.gameLogicServer.SetSpeed(1f);
+                    Time.timeScale = 1f;
+                }
+            }
+
         }
 
         [HarmonyPatch(typeof(TileManager), nameof(TileManager.DamageTile))]
